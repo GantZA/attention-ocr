@@ -195,6 +195,14 @@ def process_args(args, defaults):
     parameters = parser.parse_args(args)
     return parameters
 
+    # Michael predicting
+    parser_predict = subparsers.add_parser('predict_michael', parents=[parser_base, parser_model],
+                                           help='Predict text from files (feed through stdin).')
+    parser_predict.set_defaults(phase='predict', steps_per_checkpoint=0, batch_size=1)
+
+    parameters = parser.parse_args(args)
+    return parameters
+
 
 def main(args=None):
 
@@ -274,7 +282,7 @@ def main(args=None):
         elif parameters.phase == 'predict_michael' :
             answers = []
             label_txt = open("predicted_results.txt", "w")
-            test_images_list_path = "test_labels.txt"
+            test_images_list_path = "submission_file_names.txt"
 			
             with open(test_images_list_path) as f:
                 line_list = f.readlines()
