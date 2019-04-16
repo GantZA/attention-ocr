@@ -271,29 +271,27 @@ def main(args=None):
                     continue
                 text, probability = model.predict(img_file_data)
                 logging.info('Result: OK. %s %s', '{:.2f}'.format(probability), text)
-		elif parameters.phase == 'predict_michael':
-			answers = []
-			label_txt = open("predicted_results.txt", "w")
-			test_images_list_path = "test_labels.txt"
+        elif parameters.phase == 'predict_michael' :
+            answers = []
+            label_txt = open("predicted_results.txt", "w")
+            test_images_list_path = "test_labels.txt"
 			
-			with open(test_images_list_path) as f:
-  				line_list = f.readlines()
-			for img in line_list:
-				img_name = img.split(" ")[0]
-				try:
-					with open(img_name, 'rb') as img_file:
-						img_file_data = img_file.read()
+            with open(test_images_list_path) as f:
+                line_list = f.readlines()
+            for img in line_list:
+                img_name = img.split(" ")[0]
+                try:
+                    with open(img_name, 'rb') as img_file:
+                        img_file_data = img_file.read()
 						
-				except IOError:
-					logging.error('Result: error while opening file %s.', filename)
-					continue
-				text, probability = model.predict(img_file_data)
-				labels_txt.write(img_name + " " + text + '\n')
-				answers.append(img_name + " " + text)
-				
-				logging.info('Result: OK. %s %s', '{:.2f}'.format(probability), text)
-				
-			label_txt.close()
+                except IOError:
+                    logging.error('Result: error while opening file %s.', filename)
+                    continue
+                text, probability = model.predict(img_file_data)
+                label_txt.write(img_name + " " + text + '\n')
+                answers.append(img_name + " " + text)
+                logging.info('Result: OK. %s %s', '{:.2f}'.format(probability), text)
+            label_txt.close()
 
         elif parameters.phase == 'export':
             exporter = Exporter(model)
