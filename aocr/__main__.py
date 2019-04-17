@@ -193,7 +193,6 @@ def process_args(args, defaults):
     parser_predict.set_defaults(phase='predict', steps_per_checkpoint=0, batch_size=1)
 
     parameters = parser.parse_args(args)
-    return parameters
 
     # Michael predicting
     parser_predict_michael = subparsers.add_parser('predict_michael', parents=[parser_base, parser_model],
