@@ -196,9 +196,9 @@ def process_args(args, defaults):
     return parameters
 
     # Michael predicting
-    parser_predict = subparsers.add_parser('predict_michael', parents=[parser_base, parser_model],
+    parser_predict_michael = subparsers.add_parser('predict_michael', parents=[parser_base, parser_model],
                                            help='Predict text from files (feed through stdin).')
-    parser_predict.set_defaults(phase='predict', steps_per_checkpoint=0, batch_size=1)
+    parser_predict_michael.set_defaults(phase='predict_michael', steps_per_checkpoint=0, batch_size=1)
 
     parameters = parser.parse_args(args)
     return parameters
