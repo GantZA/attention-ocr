@@ -284,7 +284,7 @@ def main(args=None):
             with open(test_images_list_path) as f:
                 line_list = f.readlines()
             for img in line_list:
-                img_name = img.split(" ")[0]
+                img_name = img.split("\n")[0]
                 try:
                     with open(img_name, 'rb') as img_file:
                         img_file_data = img_file.read()
